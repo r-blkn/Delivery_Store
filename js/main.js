@@ -35,13 +35,9 @@ const loadCart = function() {
     // JSON.parse(localStorage.getItem(login)).forEach(function(item) {
     //   cart.push(item);
 
-    cart(...)
-    })
-  }
-
+    cart(...JSON.parse(localStorage.getItem(login)));
+    }
 }
-
-
 
 const saveCart = function() {
   localStorage.setItem(login, JSON.stringify(cart));
