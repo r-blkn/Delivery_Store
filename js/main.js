@@ -24,13 +24,27 @@ const cartButton = document.getElementById("cart-button"),
   modalBody = document.querySelector('.modal-body'),
   modalPrice = document.querySelector('.modal-pricetag'),
   buttonClearCart = document.querySelector('.clear-cart');
-  
 
 
 let login = localStorage.getItem('gloDelivery');
 
-
 const cart = [];
+
+const loadCart = function() {
+  if (localStorage.getItem(login)) {
+    JSON.parse(localStorage.getItem(logIn)).forEach(function(item) {
+      cart.push(item);
+    })
+  }
+
+}
+
+
+
+const saveCart = function() {
+  localStorage.setItem(login, JSON.stringify(cart));
+};
+
 
 const getData = async function(url) {
 
@@ -69,8 +83,10 @@ buttonAuth.addEventListener('click', toggleModalAuth);
 closeAuth.addEventListener('click', toggleModalAuth);
 
 function autorized() {
+
   function logOut() {
     login = null;
+    cart.length = 0;
     localStorage.removeItem('gloDelivery');
     buttonAuth.style.display = '';
     userName.style.display = '';
@@ -88,6 +104,7 @@ function autorized() {
   buttunOut.style.display = 'flex';
   cartButton.style.display = 'flex';
   buttunOut.addEventListener('click', logOut);
+  loadCart();
 }
 
 function notAutorized() {
@@ -241,6 +258,7 @@ function addToCart(event) {
       });
     }
   }
+  saveCart();
 }
 
 function renderCart() {
@@ -286,6 +304,7 @@ function changeCount(event) {
     if (target.classList.contains('counter-plus')) food.count++;
     renderCart();
   }
+  saveCart();
 }
 
 function init() {
