@@ -32,8 +32,10 @@ const cart = [];
 
 const loadCart = function() {
   if (localStorage.getItem(login)) {
-    JSON.parse(localStorage.getItem(logIn)).forEach(function(item) {
-      cart.push(item);
+    // JSON.parse(localStorage.getItem(login)).forEach(function(item) {
+    //   cart.push(item);
+
+    cart(...)
     })
   }
 
